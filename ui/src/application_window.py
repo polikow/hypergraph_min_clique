@@ -62,9 +62,8 @@ class ApplicationWindow(QMainWindow):
                     other = "\n".join(str(c) for c in cliques[1:])
                     other_cliques = f"Остальные кликовые минимальные сепараторы:\n{other}"
 
-                self.ui.resultTextEdit.setText(clique + other_cliques)
-                self.coloring = [1 if node in clique else 0 for node in self.hypergraph.nodes]
-                print(self.coloring)
+                self.ui.resultTextEdit.setText(f"{clique}\n{other_cliques}")
+                self.coloring = [1 if node in cliques[0] else 0 for node in self.hypergraph.nodes]
                 self.draw()
 
     def draw(self):
