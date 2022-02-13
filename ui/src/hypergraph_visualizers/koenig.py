@@ -99,7 +99,7 @@ class Koenig(HypergraphVisualizer):
         else:
             self.node_color = [
                 *["blue" if c == 1 else "black" for c in coloring],
-                *["black" for _ in range(len(self.graph.edges))]
+                *["black" for _ in range(len(self.graph.nodes) - len(coloring))]
             ]
 
     @staticmethod
