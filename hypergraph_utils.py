@@ -3,7 +3,7 @@ from hypernetx import Hypergraph
 from networkx import Graph, is_connected, connected_components
 
 
-def find_minimal_clique_separators(hg: Hypergraph) -> set[set[str]]:
+def find_minimal_clique_separators(hg: Hypergraph) -> set[frozenset[str]]:
     try:
         # строим обычный граф для заданного гиперграфа
         # (если пара вершин в гиперграфе смежны, то в обычном графе между ними есть ребро)
@@ -21,14 +21,13 @@ def find_minimal_clique_separators(hg: Hypergraph) -> set[set[str]]:
         return cliques
     except ValueError as e:
         raise ValueError(f"Не удалось найти минимальный кликовый сепаратор: {e}")
-    except RuntimeError as e:
-        raise RuntimeError(f"Произошла ошибка во время поиска: {e}")
 
 
 def hypergraph_to_graph(hg: Hypergraph) -> Graph:
     """
-    У гиперграфа есть матрица смежности вершин, по которой можно построить
-    обычный граф. В этом случае любая клика обычного графа является кликой гиперграфа.
+    У гиперграфа есть матрица смежности вершин, по которой можно построить обычный граф.
+
+    Любая клика обычного графа является кликой гиперграфа.
 
     @param hg: гиперграф
     @return: граф смежности этого гиперграфа
@@ -56,7 +55,7 @@ def find_minimal_triangulation(g: Graph) -> tuple[Graph, list[str], list[str]]:
     @return:
         1) его минимальная триангуляция (хордальный граф [это одно и то же])
         2) minimal elimination ordering
-        3) вершины, которые образуют минимальные сепараторы для триангуляции
+        3) вершины, которые образуют минимальные сепараторы
     """
     if not is_connected(g):
         raise ValueError("граф несвязный")
