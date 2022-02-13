@@ -116,7 +116,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "hypergraph isomorphism"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "hypergraph clique minimal separator"))
         self.numberOfVerticesLabel.setText(_translate("MainWindow", "Вершин"))
         self.numberOfHyperedgesLabel.setText(_translate("MainWindow", "Гиперребер"))
         self.generateHypergraphButton.setText(_translate("MainWindow", "Создать случайный гиперграф"))
