@@ -101,6 +101,8 @@ def find_minimal_triangulation(g: Graph) -> tuple[Graph, list[str], list[str]]:
                         reached.add(z)
                         if label[z] > j:
                             Y.add(z)
+                            if label[z] not in reach:
+                                reach[label[z]] = set()
                             reach[label[z]].add(z)
                         else:
                             reach[j].add(y)
